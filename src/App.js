@@ -1,25 +1,31 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Typography} from "@material-ui/core";
+import Navigation from "./Navigation";
+import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import Filters from "./Goods";
+import CardTable from "./CardTable";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main>
+      <Navigation/>
+      <Grid container spacing={3}>
+        <Grid item md={2}>
+            <Filters/>
+        </Grid>
+        <Grid item md={8}>
+            <CardTable/>
+        </Grid>
+        <Grid item md={2}>
+            <Paper>
+                <Typography>
+                    Корзина
+                </Typography>
+            </Paper>
+        </Grid>
+      </Grid>
+    </main>
   );
 }
 
