@@ -1,8 +1,8 @@
 {
-  "name": "react-shop",
+  "name": "reactshop",
   "version": "1.0.0",
   "description": "Pet project used for educational purposes",
-  "main": "dist/index.js",
+  "main": "dist/main.js",
   "author": "Evgeniy Larkov",
   "license": "ISC",
   "dependencies": {
@@ -24,6 +24,7 @@
   },
   "scripts": {
     "test": "jest",
+    "server": "node server.js",
     "build": "npx webpack -p --env production"
   },
   "eslintConfig": {
