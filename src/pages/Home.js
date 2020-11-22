@@ -6,10 +6,11 @@ import useStyles from "../styles/";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems } from "../redux/actions/items";
 import {
-  applyFilters,
-  changeSort,
-  fetchSearch,
-} from "../redux/actions/filters";
+    applyFilters,
+    changeSort,
+    fetchSearch,
+    removeFilters
+} from '../redux/actions/filters';
 import { changeFilterValue, changePriceRange } from "../redux/actions/uiState";
 import {
   removeItemFromCart,
@@ -77,6 +78,10 @@ const Home = () => {
     dispatch(applyFilters(uiFilters));
   };
 
+  const handleRemoveFilters = () => {
+    dispatch(removeFilters());
+  }
+
   return (
     <div className={styles.root}>
       <div className={styles.items}>
@@ -84,6 +89,7 @@ const Home = () => {
           changeSort={handleChangeSort}
           changePriceRange={handleChangePriceRange}
           applyFilters={handleApplyFilters}
+          removeFilters={handleRemoveFilters}
           changeFilterValue={handleChangeFilterValue}
           currentSort={filtersState.currentSort}
           filters={uiFilters}

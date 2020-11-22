@@ -4,17 +4,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
     justifyContent: "space-between",
+    alignItems: "center",
   },
   root__container: {
     display: "flex",
-    
+    alignItems: "center",
+  },
+  root__margin: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
   },
   filters: {
     display: "flex",
     alignItems: "center",
   },
   filter__button: {
-    marginLeft: theme.spacing(2),
+    //padding: theme.spacing(1),
+    marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
   filter__label: {

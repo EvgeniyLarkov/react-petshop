@@ -19,7 +19,6 @@ const uiState = (state = initialState, action) => {
     case "CHANGE_CATEGORY": {
       return initialState;
     }
-
     case "CHANGE_PRICERANGE": {
       const [minPrice, maxPrice] = action.payload;
 
@@ -46,6 +45,11 @@ const uiState = (state = initialState, action) => {
           ...state.filters,
           [action.payload.id]: action.payload.value,
         },
+      };
+    }
+    case "REMOVE_FILTERS": {
+      return {
+        ...initialState,
       };
     }
     default:

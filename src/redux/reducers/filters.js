@@ -19,6 +19,12 @@ const filters = (state = initialState, action) => {
         activeFilters: action.payload,
       };
     }
+    case "REMOVE_FILTERS": {
+      return {
+        ...state,
+        activeFilters: initialState.activeFilters,
+      };
+    }
     case "CHANGE_CATEGORY": {
       return {
         ...initialState,

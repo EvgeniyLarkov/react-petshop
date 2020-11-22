@@ -16,6 +16,11 @@ export const applyFilters = (filters) => ({
   payload: filters,
 });
 
+export const removeFilters = () => ({
+  type: "REMOVE_FILTERS",
+  payload: null,
+});
+
 export const applySearch = (value) => ({
   type: "APPLY_SEARCH",
   payload: value,

@@ -1,5 +1,6 @@
 import React from "react";
 import useStyles from "../styles/components/Filters";
+import { IconButton } from "@material-ui/core";
 import {
   Button,
   Checkbox,
@@ -12,6 +13,7 @@ import { Select } from "@material-ui/core";
 import { FormControl } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import DeleteIcon from "@material-ui/icons/Delete";
 
 const sortTypes = ["name", "price"];
 const filterTypes = {
@@ -32,19 +34,27 @@ export default function Filter({
   changePriceRange,
   changeFilterValue,
   applyFilters,
+  removeFilters,
   state,
 }) {
   const [minPrice, maxPrice] = filters.priceRange;
   const classes = useStyles();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const createFilterItem = (id, label, data, type, handler) => {
     switch (type) {
       case "multicheckbox": {
         return (
           <div className={classes.filters} key={id}>
-            <Typography className={classes.filter__label}>
-              {label}
-            </Typography>
+            <Typography className={classes.filter__label}>{label}</Typography>
             <FormControl className={classes.filter__input}>
               <Select
                 id={id}
@@ -76,10 +86,11 @@ export default function Filter({
   };
 
   return (
-    <div className={classes.root}>
+    <div className={`${classes.root} ${classes.root__margin}`}>
       <div className={classes.root__container}>
         <FilterListIcon />
         <Button
+          aria-label="apply changes"
           variant="outlined"
           color="secondary"
           className={classes.filter__button}
@@ -88,6 +99,14 @@ export default function Filter({
         >
           Apply
         </Button>
+        <IconButton
+          aria-label="delete"
+          onClick={() => removeFilters()}
+          className={classes.filter__button}
+          disabled={!(state === "changed")}
+        >
+          <DeleteIcon fontSize="small" />
+        </IconButton>
         <div className={classes.filter__priceslider}>
           <Input
             startAdornment={<InputAdornment position="end">$</InputAdornment>}
@@ -127,7 +146,13 @@ export default function Filter({
         <div className={classes.sort__inner}>
           <Typography className={classes.sort__label}>Sort by:</Typography>
           <FormControl>
-            <Select value={currentSort} onChange={changeSort}>
+            <Select
+              value={currentSort}
+              onChange={changeSort}
+              open={open}
+              onClose={handleClose}
+              onOpen={handleOpen}
+            >
               {sortTypes.map((type, index) => (
                 <MenuItem value={type} key={`${type}${index}`}>
                   {type}
