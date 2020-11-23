@@ -7,22 +7,26 @@ const useStyles = makeStyles((theme) => ({
     flexBasis: 1,
   },
   items__container: {
-    display: "grid",  
+    display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr",
-    [theme.breakpoints.down('lg')]: {
-      gridTemplateColumns: "1fr 1fr 1fr 1fr"
+    [theme.breakpoints.down("lg")]: {
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
     },
-    [theme.breakpoints.down('md')]: {
-      gridTemplateColumns: "1fr 1fr 1fr"
+    [theme.breakpoints.down("md")]: {
+      gridTemplateColumns: "1fr 1fr 1fr",
     },
   },
   root: {
     display: "grid",
     gridTemplateColumns: "3fr 1fr",
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down("md")]: {
       display: "flex",
-      flexDirection: "column", 
+      flexDirection: "column",
     },
+  },
+  modal__container: {
+    display: "flex",
+    justifyContent: "center",
   },
 }));
 

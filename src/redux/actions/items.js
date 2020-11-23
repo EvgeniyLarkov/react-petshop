@@ -1,7 +1,7 @@
 import { fetchData } from "../../utils";
 
-export const fetchItemsSucsses = (items) => ({
-  type: "FETCH_ITEMS_SUCSSES",
+export const fetchItemsSuccess = (items) => ({
+  type: "FETCH_ITEMS_SUCCESS",
   payload: items,
 });
 
@@ -28,7 +28,7 @@ export const fetchItems = (category, sortType, filters) => async (dispatch) => {
 
   try {
     const items = await fetchData(requestUrl);
-    dispatch(fetchItemsSucsses(items));
+    dispatch(fetchItemsSuccess(items));
   } catch (err) {
     dispatch(fetchItemsFailure(err));
   }

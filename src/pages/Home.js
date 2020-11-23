@@ -6,21 +6,27 @@ import useStyles from "../styles/";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems } from "../redux/actions/items";
 import {
-    applyFilters,
-    changeSort,
-    fetchSearch,
-    removeFilters
-} from '../redux/actions/filters';
+  applyFilters,
+  changeSort,
+  fetchSearch,
+  removeFilters,
+} from "../redux/actions/filters";
 import { changeFilterValue, changePriceRange } from "../redux/actions/uiState";
 import {
   removeItemFromCart,
   addItemToCart,
   emptyCart,
 } from "../redux/actions/cart";
+import { LinearProgress } from "@material-ui/core";
+import { openModal } from "../redux/actions/uiState";
+
+//to-do
+//переделать handleApplyFilters
 
 const Home = () => {
   const styles = useStyles();
   const dispatch = useDispatch();
+  const { state: userState } = useSelector(({ user }) => user);
   const { allIds, data, state: itemsState } = useSelector(({ items }) => items);
   const { items: cartItems, totalSumm, state: cartState } = useSelector(
     ({ cart }) => cart
@@ -45,7 +51,7 @@ const Home = () => {
   ]);
 
   useEffect(() => {
-    if(itemsState !== "init") {
+    if (itemsState !== "init") {
       dispatch(fetchSearch(filtersState.searchBy));
     }
   }, [filtersState.searchBy]);
@@ -80,8 +86,11 @@ const Home = () => {
 
   const handleRemoveFilters = () => {
     dispatch(removeFilters());
-  }
+  };
 
+  const handleModalOpen = () => {
+    dispatch(openModal());
+  };
   return (
     <div className={styles.root}>
       <div className={styles.items}>
@@ -95,12 +104,14 @@ const Home = () => {
           filters={uiFilters}
           state={uiState}
         />
+        {itemsState === "fetchItems" && <LinearProgress color="secondary" />}
         <div className={styles.items__container}>
-          {itemsState === "fetchItemsSucsses" &&
+          {itemsState === "fetchItemsSuccess" &&
             allIds.map((id) => (
               <SimpleCard
                 {...data[id]}
                 addToCart={handleAddItem(data[id])}
+                userState={userState}
                 key={id}
               />
             ))}
@@ -109,6 +120,7 @@ const Home = () => {
       <ShoppingCart
         removeItem={handleRemoveItem}
         removeCart={handleRemoveCart}
+        openModal={handleModalOpen}
         items={cartItems}
         totalSumm={totalSumm}
         state={cartState}

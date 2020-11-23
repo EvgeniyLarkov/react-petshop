@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const FaviconsWebpackPlugin = require("favicons-webpack-plugin");
 
 module.exports = {
   mode: process.env.NODE_ENV || "development",
@@ -43,17 +43,18 @@ module.exports = {
     }),
     new FaviconsWebpackPlugin({
       logo: `${__dirname}/public/favicon.ico`,
+      mode: "light",
       favicons: {
         appName: `Drag'n'Drop store`,
-        appDescription: 'Pet project used for educational purposes',
-        developerName: 'Evgeniy Larkov',
-        background: '#ddd',
-        theme_color: '#333',
+        appDescription: "Pet project used for educational purposes",
+        developerName: "Evgeniy Larkov",
+        background: "#ddd",
+        theme_color: "#333",
         icons: {
           coast: false,
-          yandex: false
-        }
-      }
-    })
+          yandex: false,
+        },
+      },
+    }),
   ],
 };

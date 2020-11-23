@@ -3,6 +3,7 @@ const initialState = {
     priceRange: [0, 5000],
     rating: [],
   },
+  modalState: "closed",
   state: "unchanged",
 };
 
@@ -50,6 +51,18 @@ const uiState = (state = initialState, action) => {
     case "REMOVE_FILTERS": {
       return {
         ...initialState,
+      };
+    }
+    case "OPEN_MODAL": {
+      return {
+        ...state,
+        modalState: "open",
+      };
+    }
+    case "CLOSE_MODAL": {
+      return {
+        ...state,
+        modalState: "close",
       };
     }
     default:

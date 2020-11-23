@@ -29,9 +29,12 @@ const cart = (state = initialState, action) => {
     }
     case "EMPTY_CART": {
       return {
-        state: "empty",
-        items: [],
-        totalSumm: 0,
+        ...initialState,
+      };
+    }
+    case "PURCHASE_ITEMS_SUCCESS": {
+      return {
+        ...initialState,
       };
     }
     default:

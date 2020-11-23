@@ -20,7 +20,7 @@ const filterTypes = {
   },
 };
 
-export default function Filter({
+const Filter = ({
   currentSort,
   changeSort,
   filters,
@@ -29,7 +29,7 @@ export default function Filter({
   applyFilters,
   removeFilters,
   state,
-}) {
+}) => {
   const [minPrice, maxPrice] = filters.priceRange;
   const classes = useStyles();
 
@@ -78,4 +78,8 @@ export default function Filter({
       />
     </div>
   );
-}
+};
+
+Filter.whyDidYouRender = true;
+
+export default Filter;

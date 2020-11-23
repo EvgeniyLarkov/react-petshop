@@ -2,10 +2,9 @@ import React from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 import RemoveShoppingCartIcon from "@material-ui/icons/RemoveShoppingCart";
 import Typography from "@material-ui/core/Typography";
-import { Box, Button, Divider, IconButton } from "@material-ui/core";
+import { Button, Divider, IconButton } from "@material-ui/core";
 import useStyles from "../styles/components/Cart";
-
-const isDisabled = (state) => (state === "empty");
+import { isCartEmpty } from "../utils/selectors";
 
 function ShoppingCart({
   data,
@@ -13,11 +12,10 @@ function ShoppingCart({
   removeItem,
   totalSumm,
   removeCart,
+  openModal,
   state,
 }) {
   const classes = useStyles();
-  
-
 
   const renderCartItem = (name, price, index) => {
     return (
@@ -26,7 +24,9 @@ function ShoppingCart({
           {name}
         </Typography>
         <div className={classes.cartContent__container}>
-          <Typography className={classes.cartContent__text}>{price} $</Typography>
+          <Typography className={classes.cartContent__text}>
+            {price} $
+          </Typography>
           <IconButton aria-label="delete" onClick={() => removeItem(index)}>
             <ClearIcon fontSize="small" />
           </IconButton>
@@ -51,13 +51,21 @@ function ShoppingCart({
         <Typography>Summary: {totalSumm}</Typography>
       </div>
       <div className={classes.cart__actionarea}>
-        <Button variant="contained" color="secondary" size="medium" fullWidth disabled={isDisabled(state)}>
+        <Button
+          aria-label="purchase"
+          variant="contained"
+          color="secondary"
+          size="medium"
+          fullWidth
+          disabled={isCartEmpty(state)}
+          onClick={openModal}
+        >
           Continue
         </Button>
         <IconButton
-          aria-label="remove cart"
+          aria-label="empty cart"
           onClick={() => removeCart()}
-          disabled={isDisabled(state)}
+          disabled={isCartEmpty(state)}
         >
           <RemoveShoppingCartIcon />
         </IconButton>

@@ -8,21 +8,26 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import useStyles from "../styles/components/Card";
+import { isPurchasing } from "../utils/selectors";
 
 export default function MediaCard({
   pictureUrl,
   name,
-  tags,
   description,
   price,
   addToCart,
+  userState,
 }) {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
       <CardActionArea>
-        <CardMedia image={pictureUrl} title={name} className={classes.card__media}/>
+        <CardMedia
+          image={pictureUrl}
+          title={name}
+          className={classes.card__media}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5">
             {name}
@@ -41,6 +46,7 @@ export default function MediaCard({
             size="small"
             endIcon={<ShoppingCartIcon />}
             onClick={() => addToCart()}
+            disabled={isPurchasing(userState)}
           >
             Add to cart
           </Button>

@@ -17,11 +17,11 @@ const items = (state = initialState, action) => {
         state: "fetchItems",
       };
     }
-    case "FETCH_ITEMS_SUCSSES": {
+    case "FETCH_ITEMS_SUCCESS": {
       return {
           data: action.payload,
         allIds: Object.keys(action.payload),
-        state: "fetchItemsSucsses",
+        state: "fetchItemsSuccess",
       };
     }
     case "FETCH_ITEMS_FAILURE": {

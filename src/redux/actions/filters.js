@@ -1,5 +1,5 @@
 import { fetchData } from "../../utils";
-import { fetchItemsFailure, fetchItemsSucsses } from "./items";
+import { fetchItemsFailure, fetchItemsSuccess } from "./items";
 
 export const changeSort = (sort) => ({
   type: "CHANGE_SORT",
@@ -36,7 +36,7 @@ export const fetchSearch = (searchBy) => async (dispatch) => {
 
   try {
     const items = await fetchData(requestUrl);
-    dispatch(fetchItemsSucsses(items));
+    dispatch(fetchItemsSuccess(items));
   } catch (err) {
     dispatch(fetchItemsFailure(err));
   }
