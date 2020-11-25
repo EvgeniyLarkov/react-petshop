@@ -64,7 +64,7 @@ function ShoppingCart({
         </Button>
         <IconButton
           aria-label="empty cart"
-          onClick={() => removeCart()}
+          onClick={removeCart}
           disabled={isCartEmpty(state)}
         >
           <RemoveShoppingCartIcon />
@@ -74,4 +74,4 @@ function ShoppingCart({
   );
 }
 
-export default ShoppingCart;
+export default React.memo(ShoppingCart);

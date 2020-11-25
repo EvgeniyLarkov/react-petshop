@@ -42,14 +42,14 @@ const Filter = ({
           variant="outlined"
           color="secondary"
           className={classes.filter__button}
-          onClick={() => applyFilters()}
+          onClick={applyFilters}
           disabled={!(state === "changed")}
         >
           Apply
         </Button>
         <IconButton
           aria-label="delete"
-          onClick={() => removeFilters()}
+          onClick={removeFilters}
           className={classes.filter__button}
           disabled={!(state === "changed")}
         >
@@ -80,6 +80,4 @@ const Filter = ({
   );
 };
 
-Filter.whyDidYouRender = true;
-
-export default Filter;
+export default React.memo(Filter);

@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-import Filters from "../Components/Filters";
-import ShoppingCart from "../Components/ShoppingCart";
-import SimpleCard from "../Components/Card";
+import { Filters, ShoppingCart, Card } from "../Components";
 import useStyles from "../styles/";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchItems } from "../redux/actions/items";
@@ -91,6 +89,7 @@ const Home = () => {
   const handleModalOpen = () => {
     dispatch(openModal());
   };
+
   return (
     <div className={styles.root}>
       <div className={styles.items}>
@@ -108,7 +107,7 @@ const Home = () => {
         <div className={styles.items__container}>
           {itemsState === "fetchItemsSuccess" &&
             allIds.map((id) => (
-              <SimpleCard
+              <Card
                 {...data[id]}
                 addToCart={handleAddItem(data[id])}
                 userState={userState}

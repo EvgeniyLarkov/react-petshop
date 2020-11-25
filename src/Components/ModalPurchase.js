@@ -90,4 +90,4 @@ const ModalPurchase = () => {
   );
 };
 
-export default ModalPurchase;
+export default React.memo(ModalPurchase);

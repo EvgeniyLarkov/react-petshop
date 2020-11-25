@@ -50,4 +50,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default React.memo(Navigation);

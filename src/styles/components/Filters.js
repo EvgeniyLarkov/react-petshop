@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   filter__button: {
-    //padding: theme.spacing(1),
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },

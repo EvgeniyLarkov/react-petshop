@@ -10,14 +10,14 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import useStyles from "../styles/components/Card";
 import { isPurchasing } from "../utils/selectors";
 
-export default function MediaCard({
+const SimpleCard = ({
   pictureUrl,
   name,
   description,
   price,
   addToCart,
   userState,
-}) {
+}) => {
   const classes = useStyles();
 
   return (
@@ -45,7 +45,7 @@ export default function MediaCard({
           <Button
             size="small"
             endIcon={<ShoppingCartIcon />}
-            onClick={() => addToCart()}
+            onClick={addToCart}
             disabled={isPurchasing(userState)}
           >
             Add to cart
@@ -54,4 +54,6 @@ export default function MediaCard({
       </div>
     </Card>
   );
-}
+};
+
+export default React.memo(SimpleCard);
